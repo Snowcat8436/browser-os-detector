@@ -232,7 +232,7 @@
 
             /(Trident)\/((\d+)?[\w\.]+)/i                                       // Internet Explorer 11~
 
-        ], [[NAME, 'Internet Explorer'], VERSION, MAJOR], [
+        ], [[NAME, 'IE'], VERSION, MAJOR], [
 
             /(yabrowser)\/((\d+)?[\w\.]+)/i                                     // Yandex
         ], [[NAME, 'Yandex'], VERSION, MAJOR], [
