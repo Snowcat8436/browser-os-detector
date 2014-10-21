@@ -1,89 +1,106 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>현재 브라우저와 OS 버전 확인</title>
+		<link rel="stylesheet" type="text/css" href="stylesheets/metro-bootstrap.css"/>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<style rel="stylesheet" type="text/css">
+			.hidden {display: none;}
+			.not.visible {visibility: hidden;}
+			.visible {visibility: visible;}
+			.thumbnails {height: 165px;}
+			.thumbnails img {width: 100px; height: 100px;}
+			.thumbnails a {color: white; font-size: 28px; font-weight: 700; line-height: 50px;}
+		</style>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			var pluginUrl = 
+			 '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+			_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+			_gaq.push(['_setAccount', 'UA-55955288-1']);
+			_gaq.push(['_trackPageview']);
+			
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Browser-os-detector : browser-os-detector">
+	<body>
+		<section class="container">
+			<header class="page-header">
+				<h1>browser-os-detector<small><a href="https://github.com/ethdemor/gentle-browser-os-detect" id="view-on-github" class="button">View on GitHub</a></small></h1>
+			</header>
+			
+			<section>
+				<h2>현재 브라우저와 OS</h2>
+				<ul class="thumbnails" id="info">
+				</ul>
+				
+				<h3>이 페이지는 칸 아카데미 한국 자원 봉사단 분들이</h3>
+                <h3> 번역 과정에서 문제가 발생할때 OS와 브라우저 정보를 쉽게 획득 할 수 있도록 만든 페이지입니다.</h3>
+				<p>이 페이지는 다음 페이지를 살짝 수정하였습니다.<a href="http://ethdemor.github.io/gentle-browser-os-detect/" class="button">gentle-browser-os-detect</p>
+				<!--<p>일부 자신의 OS와 브라우저 버전을 알 수 있는 사용자도 있지만 그렇지 않은 사용자가 더 많습니다. 그래서 원격접속을 통해 사용자의 정보를 확인 하거나 사용자의 동의를 얻어 Active X 를 설치하게끔 하는 경우도 있습니다만, 두 방법 다 번거롭고 요즘같이 개인 정보가 중요한 때에 동의를 얻는 것도 쉽지 않습니다.</p>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+				<h3>왜 브라우저와 OS 정보가 중요할까요?</h3>
+				<p>웹 개발을 하다보면 반드시 맞딱트리는 문제 중 하나는 같은 코드를 가지고 브라우저 마다 보여주는 방식이 다를
+					수 있다는 것입니다. 특히, 구 버전의 브라우저들은 이런 차이가 크고 인터넷 익스플로러의 경우 다른 브라우저 보다 더
+					심한 차이가 납니다.</p>
+				<p>이렇게 브라우저 마다 같은 코드를 다르게 보여주는 이유 중 하나는 웹 표준을 제대로 고려하지 않고 브라우저를
+					만들었기 때문입니다.</p>
+				<p>최근에는 HTML5 표준을 구글, 사파리, 모질라, 마이크로소프트 등이 다같이 참여해 만들어 나가고 최신
+					브라우저들이 이러한 스펙을 구현함으로써 브라우저에 따른 차이가 차츰 줄어들고 있습니다.</p>
+				<p>그러나 이러한 노력에도 불구하고 아직도 많은 사용자들이 구 버전의 브라우저를 사용하기 때문에 특정 OS나
+					브라우저에서 서비스 이용이 제대로 되지 않거나 개발자가 의도한 대로 페이지가 표시되지 않는 경우가 있습니다.</p>
+				<p>브라우저와 OS 정보가 필요한 이유는 여러분이 웹 서비스를 이용하다 어떤 문제가 발생했을 때 개발자도 여러분과
+					같은 환경을 갖춰야 어떤 문제가 발생하는지 눈으로 확인하고 수정할 수 있기 때문입니다.</p>
 
-    <title>Browser-os-detector</title>
-  </head>
+				<h3>어떻게 이 페이지에서 여러분의 브라우저와 OS 정보를 알 수 있을까요?</h3>
+				<p>과거에 HTML 2.0 표준이 아직 나오지 않았던 시기에는 HTML이 표준화 되지 않았던
+					시기였습니다. 그래서 당시 브라우저를 만드는 넷스케이프나 마이크로소프트 같은 제조사들은 웹사이트가 더 매력적으로 보이게
+					하기 위해 매력적인 기능들을 저마다 추가 했습니다.</p>
+				<p>그런데 다양한 제조사들이 브라우저를 출시하면서 문제가 발생하기 시작했습니다. 다른 브라우저에는 특정
+					브라우저에만 있는 기능이 없을 수도 있고 브라우저 버전에 따라서도 차이가 발생했기 때문입니다.</p>
+				<p>이런 차이를 메꾸기 위해 벤더들은 브라우저 버전에 따라 다른 컨텐츠를 보여줄 수 있는 방법을 찾게 됐고 그것이
+					User agent 정보입니다.</p>
 
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Snowcat8436/browser-os-detector">View on GitHub</a>
-
-          <h1 id="project_title">Browser-os-detector</h1>
-          <h2 id="project_tagline">browser-os-detector</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/Snowcat8436/browser-os-detector/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/Snowcat8436/browser-os-detector/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Browser-os-detector maintained by <a href="https://github.com/Snowcat8436">Snowcat8436</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-55955288-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
-
-  </body>
+				<h3>이 페이지는 다음 글들을 기반으로 작성됐습니다:</h3>
+				<ul>
+					<li><a href="http://en.wikipedia.org/wiki/User_agent">User agent</a></li>
+					<li><a href="http://chatii.kr/75">브라우저 정보(User Agent)에 나오는 Mozilla의 의미</a></li>
+					<li><a href="http://ohgyun.com/292">User Agent 파헤치기 (navigator.userAgent)</a></li>
+				</ul> -->
+			</section>
+			<!--
+			<hr>
+			
+			<footer>
+				<p>Gentle-browser-os-detect is maintained by <a href="https://github.com/ethdemor">ethdemor</a><br>
+				This page was generated by <a href="http://pages.github.com">GitHub Pages</a>.</p>
+			</footer>
+			-->
+		</section>
+		<!--[if lt IE 9]>
+		    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script id="thumbnail" type="text/x-handlebars-template">
+			<li class="span4 tile not visible">
+		        <a href="#">
+		            <img src="images/{{title}}.png" width="100" height="100" alt="{{title}}" title="{{title}} {{version}} {{architecture}}">
+		            <h3><strong>{{majorVersion}}</strong></h3>
+		        </a>
+		    </li>
+		</script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript" src="javascripts/ua-parser.js"></script>
+		<script type="text/javascript" src="javascripts/jquery.imagesloaded.min.js"></script>
+		<script type="text/javascript" src="javascripts/handlebars.js"></script>
+		<script type="text/javascript" src="javascripts/spin.min.js"></script>
+		<script type="text/javascript" src="javascripts/main.js"></script>
+	</body>
 </html>
